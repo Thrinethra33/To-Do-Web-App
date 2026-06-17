@@ -1,0 +1,279 @@
+/* Color Variables & Resets */
+:root {
+    --bg-dark: #0d0b14;
+    --panel-bg: rgba(255, 255, 255, 0.04);
+    --border-glow: rgba(255, 255, 255, 0.08);
+    --text-bright: #ffffff;
+    --text-muted: #8b8896;
+    --neon-cyan: #00f2fe;
+    --neon-green: #00e676;
+    --neon-red: #ff4b5c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top right, #1a162b, var(--bg-dark));
+    color: var(--text-bright);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* App Glassmorphism Container */
+.app-container {
+    width: 100%;
+    max-width: 580px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-glow);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.task-badge {
+    display: inline-block;
+    border: 1px solid var(--neon-red);
+    color: var(--neon-red);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+header h1 {
+    font-size: 26px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+header h1 span {
+    color: var(--neon-cyan);
+    font-weight: 300;
+}
+
+/* Input Form Controls */
+.todo-input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.input-row {
+    display: flex;
+    width: 100%;
+}
+
+.datetime-row {
+    gap: 10px;
+}
+
+input[type="text"], 
+input[type="datetime-local"] {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-glow);
+    color: var(--text-bright);
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, 
+input[type="datetime-local"]:focus {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--neon-cyan);
+    color: #05040a;
+    border: none;
+    padding: 0 24px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    background: #00d2dc;
+    transform: translateY(-1px);
+}
+
+/* Filter Controls */
+.list-management {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-glow);
+}
+
+.list-heading {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+.filter-btn:hover {
+    color: var(--text-bright);
+}
+
+.filter-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--border-glow);
+    color: var(--neon-cyan);
+}
+
+/* Interactive Task List UI */
+.task-list {
+    list-style: none;
+    max-height: 320px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 4px;
+}
+
+/* Custom Scrollbar for list container */
+.task-list::-webkit-scrollbar {
+    width: 4px;
+}
+.task-list::-webkit-scrollbar-thumb {
+    background: var(--border-glow);
+    border-radius: 10px;
+}
+
+.task-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-glow);
+    padding: 16px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.task-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.task-item.completed-state {
+    border-color: rgba(0, 230, 118, 0.2);
+    background: rgba(0, 230, 118, 0.01);
+}
+
+.task-item.completed-state .task-title-text {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.task-info-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    margin-right: 12px;
+}
+
+.task-title-text {
+    font-size: 15px;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.task-datetime-text {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Action controls per item */
+.action-cluster {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-icon {
+    background: transparent;
+    border: 1px solid var(--border-glow);
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    color: var(--text-bright);
+}
+
+.btn-icon.complete-action { border-color: var(--neon-green); color: var(--neon-green); }
+.btn-icon.complete-action:hover { background: var(--neon-green); color: #000; }
+
+.btn-icon.edit-action { border-color: var(--text-muted); color: var(--text-bright); }
+.btn-icon.edit-action:hover { background: var(--text-bright); color: #000; }
+
+.btn-icon.delete-action { border-color: var(--neon-red); color: var(--neon-red); }
+.btn-icon.delete-action:hover { background: var(--neon-red); color: #000; }
+
+.btn-icon:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    background: transparent !important;
+    color: var(--text-muted) !important;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+}
